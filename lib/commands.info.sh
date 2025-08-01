@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Info Commands - Information display
 # ============================================================================
-# Commands: info, projects, allowlist
+# Commands: info, projects, denylist
 # Shows system, project, and configuration information
 
 _cmd_projects() {
@@ -22,39 +22,36 @@ _cmd_projects() {
     exit 0
 }
 
-_cmd_allowlist() {
-    # Allowlist is stored in parent directory, not slot directory
-    local allowlist_file="$PROJECT_PARENT_DIR/allowlist"
+_cmd_denylist() {
+    # Denylist is stored in parent directory, not slot directory
+    local denylist_file="$PROJECT_PARENT_DIR/denylist"
 
-    cecho "🔒 ClaudeBox Firewall Allowlist" "$CYAN"
+    cecho "🔒 ClaudeBox Firewall Denylist" "$CYAN"
     echo
     cecho "Current Project: $PROJECT_DIR" "$WHITE"
     echo
 
-    if [[ -f "$allowlist_file" ]]; then
-        cecho "Allowlist file:" "$GREEN"
-        echo "  $allowlist_file"
+    if [[ -f "$denylist_file" ]]; then
+        cecho "Denylist file:" "$GREEN"
+        echo "  $denylist_file"
         echo
-        cecho "Allowed domains:" "$CYAN"
-        # Display allowlist contents
+        cecho "Blocked domains:" "$CYAN"
+        # Display denylist contents
         while IFS= read -r line; do
             if [[ -n "$line" ]] && [[ ! "$line" =~ ^#.* ]]; then
                 echo "  $line"
             fi
-        done < "$allowlist_file"
+        done < "$denylist_file"
         echo
     else
-        cecho "Allowlist file:" "$YELLOW"
+        cecho "Denylist file:" "$YELLOW"
         echo "  Not yet created (will be created on first run)"
-        echo "  Location: $allowlist_file"
+        echo "  Location: $denylist_file"
     fi
 
     echo
-    cecho "Default Allowed Domains:" "$CYAN"
-    echo "  api.anthropic.com, console.anthropic.com, statsig.anthropic.com, sentry.io"
-    echo
-    cecho "To edit allowlist:" "$YELLOW"
-    echo "  \$EDITOR $allowlist_file"
+    cecho "To edit denylist:" "$YELLOW"
+    echo "  \$EDITOR $denylist_file"
     echo
     cecho "Note:" "$WHITE"
     echo "  Changes take effect on next container start"
@@ -227,4 +224,4 @@ _cmd_info() {
     exit 0
 }
 
-export -f _cmd_projects _cmd_allowlist _cmd_info
+export -f _cmd_projects _cmd_denylist _cmd_info

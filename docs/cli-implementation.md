@@ -21,7 +21,7 @@ All arguments are classified into exactly one of four buckets:
 # Four flag buckets (Bash 3.2 compatible - no associative arrays)
 readonly HOST_ONLY_FLAGS=(--verbose rebuild tmux)
 readonly CONTROL_FLAGS=(--enable-sudo --disable-firewall)
-readonly SCRIPT_COMMANDS=(shell create slot slots revoke profiles projects profile info help -h --help add remove install allowlist)
+readonly SCRIPT_COMMANDS=(shell create slot slots revoke profiles projects profile info help -h --help add remove install denylist)
 
 parse_cli_args() {
     # Single parsing loop - each arg goes into exactly ONE bucket
@@ -84,7 +84,7 @@ done
 | `profile` | Script command | Host | Shows current profile | No |
 | `add`/`remove` | Script command | Host | Package management | No |
 | `install` | Script command | Host | Installs packages | No |
-| `allowlist` | Script command | Host | Manages firewall allowlist | No |
+| `denylist` | Script command | Host | Manages firewall denylist | No |
 | `info` | Script command | Host | Shows project info | No |
 | `help`/`-h`/`--help` | Script command | Host | Shows help | No |
 | `update` | Pass-through | Container | Updates Claude CLI | Yes |

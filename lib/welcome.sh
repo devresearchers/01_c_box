@@ -24,7 +24,7 @@ show_welcome_screen() {
     echo
     echo -e "     ${GREEN}•${NC} ${WHITE}Isolated Environment${NC}     Each project runs in its own Docker container"
     echo -e "     ${GREEN}•${NC} ${WHITE}Multi-Profile Support${NC}    20+ language stacks (Python, Rust, Go, etc.)"
-    echo -e "     ${GREEN}•${NC} ${WHITE}Network Security${NC}         Firewall with customizable allowlist"
+    echo -e "     ${GREEN}•${NC} ${WHITE}Network Security${NC}         Firewall with customizable denylist"
     echo -e "     ${GREEN}•${NC} ${WHITE}Multi-Slot System${NC}        Run multiple Claude instances per project"
     echo -e "     ${GREEN}•${NC} ${WHITE}Persistent Storage${NC}       Your work is saved between sessions"
     echo

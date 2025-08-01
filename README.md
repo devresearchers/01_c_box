@@ -26,7 +26,7 @@ The Ultimate Claude Code Docker Development Environment - Run Claude AI's coding
 
 - **Enhanced UI/UX**: Improved menu alignment and comprehensive info display
 - **New `profiles` Command**: Quick listing of all available profiles with descriptions
-- **Firewall Management**: New `allowlist` command to view/edit network allowlists
+- **Firewall Management**: New `denylist` command to view/edit network denylists
 - **Per-Project Isolation**: Separate Docker images, auth state, history, and configs
 - **Improved Clean Menu**: Clear descriptions showing exact paths that will be removed
 - **Profile Management Menu**: Interactive profile command with status and examples
@@ -42,7 +42,7 @@ The Ultimate Claude Code Docker Development Environment - Run Claude AI's coding
 - **Multi-Instance Support**: Work on multiple projects simultaneously
 - **Package Management**: Easy installation of additional development tools
 - **Auto-Setup**: Handles Docker installation and configuration automatically
-- **Security Features**: Network isolation with project-specific firewall allowlists
+- **Security Features**: Network isolation with project-specific firewall denylists
 - **Developer Experience**: GitHub CLI, Delta, fzf, and zsh with oh-my-zsh powerline
 - **Python Virtual Environments**: Automatic per-project venv creation with uv
 - **Cross-Platform**: Works on Ubuntu, Debian, Fedora, Arch, and more
@@ -65,7 +65,7 @@ The self-extracting installer is ideal for automated setups and quick installati
 
 ```bash
 # Download the latest release
-wget https://github.com/RchGrav/claudebox/releases/latest/download/claudebox.run
+wget https://github.com/devresearchers/01_c_box/releases/latest/download/claudebox.run
 chmod +x claudebox.run
 ./claudebox.run
 ```
@@ -81,7 +81,7 @@ For manual installation or custom locations, use the archive:
 
 ```bash
 # Download the archive
-wget https://github.com/RchGrav/claudebox/releases/latest/download/claudebox-2.0.0.tar.gz
+wget https://github.com/devresearchers/01_c_box/releases/latest/download/claudebox-2.0.0.tar.gz
 
 # Extract to your preferred location
 mkdir -p ~/my-tools/claudebox
@@ -173,7 +173,7 @@ claudebox profile python ml
 Each project maintains its own:
 - Docker image (`claudebox-<project-name>`)
 - Language profiles and installed packages
-- Firewall allowlist
+- Firewall denylist
 - Python virtual environment
 - Memory and context (via MCP)
 - Claude configuration (`.claude.json`)
@@ -271,8 +271,8 @@ claudebox shell
 # Update Claude CLI
 claudebox update
 
-# View/edit firewall allowlist
-claudebox allowlist
+# View/edit firewall denylist
+claudebox denylist
 ```
 
 ### Tmux Integration
@@ -357,7 +357,7 @@ ClaudeBox stores data in:
   - `.claude.json` - Project API configuration
   - `.zsh_history` - Shell history
   - `.config/` - Tool configurations
-  - `firewall/allowlist` - Network allowlist
+  - `firewall/denylist` - Network denylist
 - Current directory mounted as `/workspace` in container
 
 ### Project-Specific Features
@@ -380,7 +380,7 @@ ClaudeBox creates a per-project Debian-based Docker image with:
 - Node.js (via NVM for version flexibility)
 - Claude Code CLI (@anthropic-ai/claude-code)
 - User account matching host UID/GID
-- Network firewall (project-specific allowlists)
+- Network firewall (project-specific denylists)
 - Volume mounts for workspace and configuration
 - GitHub CLI (gh) for repository operations
 - Delta for enhanced git diffs (version 0.17.0)

@@ -99,6 +99,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Initial Features
 - Project-specific Docker containers for isolated development environments
 - Profile system for language and tool installations
-- Firewall configuration with allowlist support
+- Firewall configuration with denylist support
 - Persistent storage for project data
 - Multi-project support with separate containers per project

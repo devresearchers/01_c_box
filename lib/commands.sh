@@ -37,10 +37,10 @@ source "${LIB_DIR}/commands.slot.sh"
 # ============================================================================
 # INFO COMMANDS - Information display
 # ============================================================================
-# Commands: info, projects, allowlist
+# Commands: info, projects, denylist
 # - info: Shows comprehensive project and system information
 # - projects: Lists all ClaudeBox projects system-wide
-# - allowlist: Shows/manages the firewall allowlist
+# - denylist: Shows/manages the firewall denylist
 source "${LIB_DIR}/commands.info.sh"
 
 # ============================================================================
@@ -115,7 +115,7 @@ show_help() {
   save [flags...]                 Save default flags
   shell                           Open transient shell
   shell admin                     Open admin shell (sudo enabled)
-  allowlist                       Show/edit firewall allowlist
+  denylist                        Show/edit firewall denylist
   info                            Show comprehensive project info
   clean                           Menu of cleanup tasks
   create                          Create new authenticated container slot
@@ -224,7 +224,7 @@ show_full_help() {
   save [flags...]                 Save default flags\
   shell                           Open transient shell\
   shell admin                     Open admin shell (sudo enabled)\
-  allowlist                       Show/edit firewall allowlist\
+  denylist                        Show/edit firewall denylist\
   info                            Show comprehensive project info\
   clean                           Menu of cleanup tasks\
   create                          Create new authenticated container slot\
@@ -281,7 +281,7 @@ dispatch_command() {
         
         # Info commands
         projects)         _cmd_projects "$@" ;;
-        allowlist)        _cmd_allowlist "$@" ;;
+        denylist)        _cmd_denylist "$@" ;;
         info)             _cmd_info "$@" ;;
         
         # Clean commands
