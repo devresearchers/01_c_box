@@ -19,7 +19,7 @@ HOST_ONLY=(--verbose rebuild tmux)
 CONTROL=(--enable-sudo --disable-firewall)
 
 # 3) Script commands (handled entirely on host)
-SCRIPT_CMDS=(shell create slot slots revoke profiles projects profile info help -h --help add remove install allowlist)
+SCRIPT_CMDS=(shell create slot slots revoke profiles projects profile info help -h --help add remove install denylist)
 
 # 4) Pass-through (everything else → Claude CLI)
 PASS_THROUGH=()
@@ -48,7 +48,7 @@ main() {
   # C) Buckets setup
   HOST_ONLY=(--verbose rebuild tmux)
   CONTROL=(--enable-sudo --disable-firewall)
-  SCRIPT_CMDS=(shell create slot slots revoke profiles projects profile info help -h --help add remove install allowlist)
+  SCRIPT_CMDS=(shell create slot slots revoke profiles projects profile info help -h --help add remove install denylist)
   host_flags=(); control_flags=(); script_flags=()
 
   # D) Single parse loop
@@ -170,7 +170,7 @@ exec claude "${CLAUDE_ARGS[@]}"
 | `add` / `remove`         | Script command | parse loop (D) | `dispatch_host add/remove`                            | No         |
 | `install`                | Script command | parse loop (D) | `dispatch_host install`                               | No         |
 | `info`                   | Script command | parse loop (D) | `dispatch_host info`                                  | No         |
-| `allowlist`              | Script command | parse loop (D) | `dispatch_host allowlist`                             | No         |
+| `denylist`              | Script command | parse loop (D) | `dispatch_host denylist`                             | No         |
 | `help` / `-h` / `--help` | Script command | parse loop (D) | `dispatch_host help` → `show_help`; exit              | No         |
 | `update`                 | Pass-through   | parse loop (D) | Left in `PASS_THROUGH[]`, runs inside container       | Yes        |
 | `config`                 | Pass-through   | parse loop (D) | Left in `PASS_THROUGH[]`, runs inside container       | Yes        |

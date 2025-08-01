@@ -105,7 +105,7 @@ ClaudeBox is a modular Bash application that creates isolated Docker environment
    - `config.sh` - Configuration loading/saving, ~/.claudebox structure
    - `project.sh` - Per-project isolation, environment switching
    - `profile.sh` - Development profile system (20+ language stacks)
-   - `firewall.sh` - Network isolation and allowlist management
+   - `firewall.sh` - Network isolation and denylist management
 
 3. **Template System**:
    - `templates/Dockerfile.template` - Base container definition

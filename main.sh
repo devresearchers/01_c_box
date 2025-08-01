@@ -408,16 +408,16 @@ main() {
         sudo chown -R "$USER:$USER" "$HOME/.claudebox" || true
     fi
     
-    # Step 13: Create allowlist if needed
+    # Step 13: Create denylist if needed
     if [[ -n "${PROJECT_PARENT_DIR:-}" ]]; then
-        local allowlist_file="$PROJECT_PARENT_DIR/allowlist"
-        if [[ ! -f "$allowlist_file" ]]; then
+        local denylist_file="$PROJECT_PARENT_DIR/denylist"
+        if [[ ! -f "$denylist_file" ]]; then
             # Root directory is where the script is located
             local root_dir="$SCRIPT_DIR"
-            
-            local allowlist_template="${root_dir}/build/allowlist"
-            if [[ -f "$allowlist_template" ]]; then
-                cp "$allowlist_template" "$allowlist_file" || error "Failed to copy allowlist template"
+
+            local denylist_template="${root_dir}/build/denylist"
+            if [[ -f "$denylist_template" ]]; then
+                cp "$denylist_template" "$denylist_file" || error "Failed to copy denylist template"
             fi
         fi
     fi

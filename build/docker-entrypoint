@@ -39,6 +39,9 @@ fi
 if [ -f /home/DOCKERUSER/init-firewall ]; then
     /home/DOCKERUSER/init-firewall || true
 fi
+if [ -f /home/DOCKERUSER/firewall-logger ]; then
+    /home/DOCKERUSER/firewall-logger >/dev/null 2>&1 &
+fi
 
 # Handle sudo access based on --enable-sudo flag
 # Note: DOCKERUSER user already has sudoers entry from Dockerfile

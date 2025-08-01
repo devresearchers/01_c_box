@@ -143,7 +143,8 @@ EOF
 
 # Copy init-firewall script
 COPY --chmod=755 init-firewall /home/$USERNAME/init-firewall
-RUN chown $USER_ID:$GROUP_ID /home/$USERNAME/init-firewall
+COPY --chmod=755 firewall-logger /home/$USERNAME/firewall-logger
+RUN chown $USER_ID:$GROUP_ID /home/$USERNAME/init-firewall /home/$USERNAME/firewall-logger
 
 # Copy generate-tools-readme script and tools-report.sh library
 COPY --chmod=755 generate-tools-readme /usr/local/bin/generate-tools-readme
@@ -163,6 +164,7 @@ RUN echo "Rebuild timestamp: ${REBUILD_TIMESTAMP:-none}" > /dev/null
 COPY --chown=$USERNAME docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN sed -i "s|DOCKERUSER|$USERNAME|g" /usr/local/bin/docker-entrypoint && \
     sed -i "s|DOCKERUSER|$USERNAME|g" /home/$USERNAME/init-firewall && \
+    sed -i "s|DOCKERUSER|$USERNAME|g" /home/$USERNAME/firewall-logger && \
     chmod +x /usr/local/bin/docker-entrypoint
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]

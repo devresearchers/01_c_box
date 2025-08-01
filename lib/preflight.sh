@@ -62,7 +62,7 @@ preflight_check() {
             ;;
             
         # Commands that need a valid project directory
-        rebuild|info|profile|add|remove|install|allowlist|save)
+        rebuild|info|profile|add|remove|install|denylist|save)
             if [[ "$project_folder_name" == "NONE" ]]; then
                 error "No project found in current directory.
 Please cd to a project directory first."

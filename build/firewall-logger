@@ -1,0 +1,24 @@
+#!/bin/bash
+set -euo pipefail
+
+LOG_FILE="/home/DOCKERUSER/.claudebox/FIREWALL_REPORT.csv"
+
+# Create log file with header if missing
+if [ ! -f "$LOG_FILE" ]; then
+    echo "timestamp,domain,profile,bytes_sent,bytes_received,process" > "$LOG_FILE"
+fi
+
+# Read kernel messages and append firewall events
+# This is a best-effort logger and may not capture all fields.
+dmesg -w | while read -r line; do
+    if [[ "$line" == *"FIREWALL_DENY:"* ]]; then
+        ts=$(date '+%Y-%m-%d %H:%M:%S')
+        domain=$(echo "$line" | sed -n 's/.*FIREWALL_DENY:\([^ ]*\).*/\1/p')
+        bytes=$(echo "$line" | sed -n 's/.*LEN=\([0-9]*\).*/\1/p')
+        ip=$(echo "$line" | sed -n 's/.*DST=\([0-9.]*\).*/\1/p')
+        process=""
+        profile="${CLAUDE_PROFILE:-}"
+        echo "${ts},${domain},${profile},${bytes},0,${process}" >> "$LOG_FILE"
+    fi
+
+done &
